@@ -1,0 +1,151 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  width: 300px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+/* Login Section Styles */
+.login-section {
+  margin-bottom: 15px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.25);
+}
+
+/* Button Group Styles */
+.button-group {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.button-group button {
+  flex: 1;
+  margin-top: 0;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  min-height: 100px;
+  box-sizing: border-box;
+  font-size: 14px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #4285f4;
+  box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.25);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #3367d6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+#saveButton {
+  background-color: #fbbc05;
+  color: #333;
+}
+
+#saveButton:hover {
+  background-color: #e6ac04;
+}
+
+.results-area {
+  margin-top: 15px;
+  text-align: left;
+  background: white;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 13px;
+  border: 1px solid #eee;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.valid-email {
+  color: #0f9d58;
+}
+
+.invalid-email {
+  color: #db4437;
+}
+
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.loading {
+  display: none;
+  margin: 10px auto;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #4285f4;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
