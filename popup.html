@@ -9,28 +9,25 @@
 </head>
 
 <body>
-  <h3>Email Cherckers</h3>
-
+  <h3>Email Checks</h3>
 
   <!-- Validator section -->
   <textarea id="accountList" placeholder="Enter email addresses, one per line"></textarea>
-  <div class="loading" id="loadingSpinner"></div>
   <button id="startCheck">Validate Emails</button>
+  <div class="loading" id="loadingSpinner"></div>
   <div class="results-area" id="resultsArea" style="display: none;">
     <!-- Results will be displayed here -->
   </div>
 
-
   <!-- Login section -->
   <div class="login-section">
-    <h4>Save input IDs</h4>
+    <h4>Save Input IDs</h4>
     <input type="email" id="emailInput" placeholder="Email ID" />
     <input type="password" id="passwordInput" placeholder="Password ID" />
     <input type="text" id="connectInput" placeholder="Connect Button ID" />
-    <div class="button-group">
-      <button id="saveButton">Save</button>
-    </div>
+    <button id="saveButton">Save Settings</button>
   </div>
+  
   <script src="popup.js"></script>
 </body>
 
